@@ -57,6 +57,7 @@ class Swarm
 	public function findGlobalBest()
 	{
 		for ($i = 0; $i < $this->particleCount; $i++) {
+			$fitness[] = ceil($this->swarm[$i]->getFitness());
 			if ($this->swarm[$i]->getFitness() < $this->globalBestFitness) {
 				$this->globalBestPosition = $this->swarm[$i]->getPosition();
 				$this->globalBestFitness = $this->swarm[$i]->getFitness();
