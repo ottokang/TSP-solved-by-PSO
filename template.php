@@ -18,12 +18,18 @@
             毀滅次數（1、2、3……）
             -->
         </div>
-        <canvas id="test" width="300" height="300">
+        <canvas id="test" width="680" height="680">
             繪圖區
         </canvas>
         <footer>
             作者：康家豪
         </footer>
     </body>
+    <?php if ($route && $points): ?>
+	    <script type="text/javascript">
+			var route = <?= $route ?>;
+			var points = <?= $points ?>;
+	    </script>
+    <?php endif; ?>
     <script type="text/javascript" src="canvas.js"></script>
 </html>

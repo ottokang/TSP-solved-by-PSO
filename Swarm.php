@@ -33,6 +33,9 @@ class Swarm
 		$this->globalBestFitness = $this->swarm[0]->getFitness();
 	}
 
+	/**
+	 * 更新粒子群速度
+	 */
 	public function updateParticleVelocity()
 	{
 		for ($i = 0; $i < $this->particleCount; $i++) {
@@ -40,6 +43,9 @@ class Swarm
 		}
 	}
 
+	/**
+	 * 計算粒子群適應值
+	 */
 	public function calculateParticleFitness()
 	{
 		for ($i = 0; $i < $this->particleCount; $i++) {
@@ -47,6 +53,9 @@ class Swarm
 		}
 	}
 
+	/**
+	 * 套用粒子群速度
+	 */
 	public function applyParticleVelocity()
 	{
 		for ($i = 0; $i < $this->particleCount; $i++) {
@@ -54,6 +63,9 @@ class Swarm
 		}
 	}
 
+	/**
+	 * 設定粒子群最佳解
+	 */
 	public function findGlobalBest()
 	{
 		for ($i = 0; $i < $this->particleCount; $i++) {
@@ -65,11 +77,25 @@ class Swarm
 		}
 	}
 
-	public function getResult()
+	/**
+	 * 取得最佳適應值
+	 */
+	public function getBestFitness()
 	{
 		return $this->globalBestFitness;
 	}
 
+	/**
+	 * 取得最佳位置
+	 */
+	public function getBestPosition()
+	{
+		return $this->globalBestPosition;
+	}
+
+	/**
+	 * 取得所有粒子（除錯用）
+	 */
 	public function getParticles()
 	{
 		foreach ($this->swarm as $particle) {

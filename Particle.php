@@ -8,7 +8,7 @@ class Particle
 	private $position = array();
 
 	// 粒子速度
-	public $velocity = array();
+	private $velocity = array();
 
 	// 粒子適應值
 	private $fitness = NULL;
@@ -37,19 +37,16 @@ class Particle
 		$this->particleBestPostion = $this->position;
 	}
 
+	// 取得粒子位置
 	public function getPosition()
 	{
 		return $this->position;
 	}
 
+	// 取得粒子適應值
 	public function getFitness()
 	{
 		return $this->fitness;
-	}
-
-	public function setPostion($position)
-	{
-		$this->position = $position;
 	}
 
 	/**
@@ -75,16 +72,17 @@ class Particle
 	}
 
 	/**
-	 * 套用速度
+	 * 套用粒子速度，移動到新位置
 	 */
 	public function applyVelocity()
 	{
 		// 建立套用速度的順序（隨機）
 		$order = range(0, __PONIT_MAX__ - 1);
 		shuffle($order);
+
+		// 將粒子移動到新位置
 		$newPosition = array();
 		$newVelocity = array();
-
 		for ($i = 0; $i < __PONIT_MAX__; $i++) {
 			$newSlot = $order[$i] + $this->velocity[$order[$i]];
 			$this->_moveToNewPosiotion($newPosition, $newVelocity, $order[$i], $newSlot);
@@ -146,7 +144,7 @@ class Particle
 		// 限制粒子位置
 		$newSlot = $this->_limitSlot($newSlot);
 
-		// 移動到新位置，如果該位置已經有點存在，則向鄰近的位置探尋
+		// 移動到新位置，如果該位置已經有點存在，或者超出移動範圍，則向鄰近的位置探尋
 		while (isset($newPosition[$newSlot]) || (($newSlot > __PONIT_MAX__ - 1) || ($newSlot < 0))) {
 			if ($direction == 0) {
 				$newSlot -= $range;
