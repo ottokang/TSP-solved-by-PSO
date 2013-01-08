@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="zh">
-<<<<<<< .mine
 	<head>
 		<meta charset="utf-8" />
 		<title>Travelling salesman problem sovle by PSO algorithm</title>
