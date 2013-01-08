@@ -1,9 +1,13 @@
 body {
-    font-size: 12px;
+	font-size: 12px;
+	padding: 0.5em;
+}
+
+#paintArea {
+	border: 1px solid black;
 }
 
 
-
 footer {
-    font-size: 150%;
+	font-size: 150%;
 }
