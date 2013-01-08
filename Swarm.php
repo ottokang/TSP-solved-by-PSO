@@ -16,6 +16,9 @@ class Swarm
     // 群體最佳適應值
     private $globalBestFitness = NULL;
 
+    // 群體平均適應值歷程
+    private $fitnessHistory = array();
+    
     /**
      * 建構子，產生粒子群體
      */
@@ -44,13 +47,17 @@ class Swarm
     }
 
     /**
-     * 計算粒子群適應值
+     * 計算粒子群適應值，儲存本次粒子群的適應值平均
      */
     public function calculateParticleFitness()
     {
+        $particleAverageFitness = 0;
         for ($i = 0; $i < $this->particleCount; $i++) {
             $this->swarm[$i]->calculateFitness();
+            $particleAverageFitness += $this->swarm[$i]->getFitness(); 
         }
+        
+        $this->fitnessHistory[] = $particleAverageFitness / $this->particleCount;              
     }
 
     /**
@@ -93,6 +100,14 @@ class Swarm
         return $this->globalBestPosition;
     }
 
+    /**
+     * 取得粒子平均適應值
+     */
+    public function getFitnessHistory()
+    {
+        return $this->fitnessHistory;
+    }
+    
     /**
      * 取得所有粒子（除錯用）
      */

@@ -5,9 +5,14 @@ body {
 
 #paintArea {
 	border: 1px solid black;
+	position: absolute;
+	
 }
 
-
+#fitnessHistory {
+	position: absolute;
+	left: 750px;
+}
 footer {
 	font-size: 150%;
 }

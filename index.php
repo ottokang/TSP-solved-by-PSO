@@ -10,7 +10,7 @@ require_once 'Swarm.php';
 define('__PONIT_MAX__', 20);
 
 // 粒子數量
-define('__SWARM_COUNT__', 50);
+define('__SWARM_COUNT__', 100);
 
 // 演算迭代量
 define('__ITER__COUNT', 30);
@@ -28,7 +28,7 @@ if ($_POST['isGenerateNewPoints'] == 1 || count($_POST) == 0) {
     $GLOBALS['travelPoints'] = $_POST['pointsInput'];   
 }
 
-// 將旅行點資料寫入為Input
+// 將旅行點資料寫入為<Input>
 for ($i = 0; $i < count($GLOBALS['travelPoints']); $i++) {
     $pointInputData .= '<input type="hidden" name="pointsInput[' . $i . '][0]" value="' . $GLOBALS['travelPoints'][$i][0] . '" />';
     $pointInputData .= '<input type="hidden" name="pointsInput[' . $i . '][1]" value="' . $GLOBALS['travelPoints'][$i][1] . '" />';
@@ -45,11 +45,12 @@ for ($i = 0; $i < __ITER__COUNT; $i++) {
     $swarm->applyParticleVelocity();
 }
 
-// 設定樣板資料（最佳路徑長度、路徑順序）
+// 設定樣板資料（最佳路徑長度、路徑順序、平均適應值歷史資料）
 $routeLength = $swarm->getBestFitness();
 $route = $swarm->getBestPosition();
 ksort($route);
 $route = json_encode($route);
+$fitnessHistory = $swarm->getFitnessHistory();
 
 // 進行旅行點座標轉換
 foreach ($GLOBALS['travelPoints'] as $p) {
