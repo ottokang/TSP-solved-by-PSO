@@ -51,13 +51,13 @@ class Swarm
      */
     public function calculateParticleFitness()
     {
-        $particleAverageFitness = 0;
+        $particleAverageFitness = array();
         for ($i = 0; $i < $this->particleCount; $i++) {
             $this->swarm[$i]->calculateFitness();
-            $particleAverageFitness += $this->swarm[$i]->getFitness(); 
+            $particleAverageFitness[] = $this->swarm[$i]->getFitness(); 
         }
         
-        $this->fitnessHistory[] = $particleAverageFitness / $this->particleCount;              
+        $this->fitnessHistory[] = array_sum($particleAverageFitness) / $this->particleCount;              
     }
 
     /**

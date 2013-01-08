@@ -13,7 +13,10 @@ define('__PONIT_MAX__', 20);
 define('__SWARM_COUNT__', 100);
 
 // 演算迭代量
-define('__ITER__COUNT', 30);
+define('__ITER_COUNT', 30);
+
+// 毀滅次數
+define('__DISTICNT_TIME', 5);
 
 // 判斷是否產生新的旅行點產生隨機旅行點
 if ($_POST['isGenerateNewPoints'] == 1 || count($_POST) == 0) {
@@ -23,9 +26,9 @@ if ($_POST['isGenerateNewPoints'] == 1 || count($_POST) == 0) {
             '1' => mt_rand(-300, 300),
             'e' => ''
         );
-    }    
+    }
 } else {
-    $GLOBALS['travelPoints'] = $_POST['pointsInput'];   
+    $GLOBALS['travelPoints'] = $_POST['pointsInput'];
 }
 
 // 將旅行點資料寫入為<Input>
@@ -35,14 +38,20 @@ for ($i = 0; $i < count($GLOBALS['travelPoints']); $i++) {
     $pointInputData .= '<input type="hidden" name="pointsInput[' . $i . '][e]" value="" />';
 }
 
-
 // 初始粒子群，開始進行計算
-$swarm = new Swarm(__SWARM_COUNT__);
-for ($i = 0; $i < __ITER__COUNT; $i++) {
-    $swarm->calculateParticleFitness();
-    $swarm->findGlobalBest();
-    $swarm->updateParticleVelocity();
-    $swarm->applyParticleVelocity();
+$results = array();
+for ($d = 0; $d < __DISTICNT_TIME; $d++) {
+    $swarm = new Swarm(__SWARM_COUNT__);
+    for ($i = 0; $i < __ITER_COUNT; $i++) {
+        $swarm->calculateParticleFitness();
+        $swarm->findGlobalBest();
+        $swarm->updateParticleVelocity();
+        $swarm->applyParticleVelocity();
+    }
+    $results[] = array(
+        $swarm->getBestFitness(),
+        $swarm->getBestPosition()
+    );
 }
 
 // 設定樣板資料（最佳路徑長度、路徑順序、平均適應值歷史資料）
