@@ -1,18 +1,14 @@
 body {
-	font-size: 12px;
-	padding: 0.5em;
+    font-size: 12px;
+    padding: 0.5em;
 }
 
 #paintArea {
-	border: 1px solid black;
-	position: absolute;
-	
+    border: 1px solid black;
+    position: absolute;
 }
 
-#fitnessHistory {
-	position: absolute;
-	left: 750px;
-}
-footer {
-	font-size: 150%;
+#result {
+    position: absolute;
+    left: 750px;
 }

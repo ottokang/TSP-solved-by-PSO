@@ -12,7 +12,9 @@
 		<div id="inputArea">
 			<form name="paramSetting" method="post">
 				<input type="checkbox" name="isGenerateNewPoints" value="1" />
-				產生新點 <?= $pointInputData ?>
+				產生新點
+
+				<?= $pointInputData ?>
 				<!--
 				請建立四個select選單：
 				旅行點數量（5、10、15……）
@@ -23,13 +25,15 @@
 				<input type="submit" name="submit" value="演算" />
 			</form>
 		</div>
-		<h2 id="routeLength"> 最短路徑：<?= $routeLength ?></h2>
+		<h2 id="autor">作者：康家豪、溫國光、邱順得</h2>
+
 		<canvas id="paintArea" width="680" height="680">
 			繪圖區
 		</canvas>
-		<?php if($fitnessHistory): ?>
-		<div id="fitnessHistory">
-			<h2>粒子群平均適應值</h2>
+		<?php if($routeLength): ?>
+		<div id="result">
+			<h2 id="routeLength"> 最短路徑：<?= $routeLength ?></h2>
+			<h2 id="fitnessHistory">粒子群平均適應值</h2>
 			<table>
 				<?php
                 foreach ($fitnessHistory as $generation => $fitness) {
@@ -39,14 +43,11 @@
 			</table>
 		</div>
 		<?php endif; ?>
-		<footer>
-			作者：康家豪、溫國光、邱順得
-		</footer>
 	</body>
 	<?php if ($route && $points): ?>
     	<script type="text/javascript">
-    	   var route =<?= $route ?>;
-    	   var points =<?= $points ?>;
+    	   var route = <?= $route ?>;
+    	   var points = <?= $points ?>;
     	</script>
 	<?php endif; ?>
 	<script type="text/javascript" src="canvas.js"></script>
