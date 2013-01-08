@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8" />
+        <title>Travelling salesman problem sovle by PSO algorithm</title>
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+    </head>
+    <body onload="drawAll();">
+        <header>
+            以粒子群最佳化演算法解決旅行商問題示範
+        </header>
+        <div id="inputArea">
+            <!--
+            請建立四個select選單：
+            旅行點數量（5、10、15……）
+            運算粒子數（20、30、40、50………）
+            運算迭代數（10、20、30……）
+            毀滅次數（1、2、3……）
+            -->
+        </div>
+        <canvas id="test" width="680" height="680">
+            繪圖區
+        </canvas>
+        <footer>
+            作者：康家豪
+        </footer>
+    </body>
+    <?php if ($route && $points): ?>
+	    <script type="text/javascript">
+			var route = <?= $route ?>;
+			var points = <?= $points ?>;
+	    </script>
+    <?php endif; ?>
+    <script type="text/javascript" src="canvas.js"></script>
+</html>
