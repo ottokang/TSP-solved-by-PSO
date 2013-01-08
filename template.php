@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh">
     <head>
         <meta charset="utf-8" />
@@ -20,7 +20,7 @@
             運算迭代數（10、20、30……）
             毀滅次數（1、2、3……）
             -->
-            <input type="submit" name="submit" value="演算" />
+            <input type="submit" name="submit" value="演算GO" />
             </form>
         </div>
         <h2 id="routeLength">
@@ -30,7 +30,7 @@
             繪圖區
         </canvas>
         <footer>
-            作者：康家豪
+            作者：康家豪、溫國光、邱順得
         </footer>
     </body>
     <?php if ($route && $points): ?>
