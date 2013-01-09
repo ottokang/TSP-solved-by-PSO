@@ -27,7 +27,7 @@
 		</div>
 		<h2 id="autor">作者：康家豪、溫國光、邱順得</h2>
 
-		<canvas id="paintArea" width="680" height="680">
+		<canvas id="paintArea" width="<?= PAINT_SIZE + PAINT_PADDING ?>" height="<?= PAINT_SIZE + PAINT_PADDING ?>">
 			繪圖區
 		</canvas>
 		<?php if($routeLength): ?>
