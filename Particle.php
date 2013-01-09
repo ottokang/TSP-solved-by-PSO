@@ -4,267 +4,200 @@
  */
 class Particle
 {
-    // 粒子的位置（解）
-    private $_position = array();
+	// 粒子的位置（解）
+	private $_position = array();
 
-    // 粒子速度
-    private $_velocity = array();
+	// 粒子速度
+	private $_velocity = array();
 
-    // 粒子適應值
-    private $_fitness = NULL;
+	// 粒子適應值
+	private $_fitness = NULL;
 
-    // 粒子個體最佳位置
-    private $_particleBestPostion = array();
+	// 粒子個體最佳位置
+	private $_particleBestPostion = array();
 
-    // 粒子個體最佳適應值
-    private $_particleBestFitness = NULL;
+	// 粒子個體最佳適應值
+	private $_particleBestFitness = NULL;
 
-    // 產生初始粒子和速度
-    public function __construct()
-    {
-        // 產生初始粒子
-        $this->_position = range(0, POINT_MAX - 1);
-        shuffle($this->_position);
+	// 產生初始粒子和速度，或者直接輸入粒子
+	public function __construct($bestOrder = NULL)
+	{
+		if ($bestOrder) {
+			$this->_position = $bestOrder;
+		} else {
+			// 產生初始粒子
+			$this->_position = range(0, POINT_MAX - 1);
+			shuffle($this->_position);
+		}
 
-        // test
-        /*
-         $this->_position = array(
-         1,
-         49,
-         32,
-         45,
-         19,
-         41,
-         8,
-         9,
-         10,
-         43,
-         33,
-         51,
-         11,
-         52,
-         14,
-         13,
-         47,
-         26,
-         27,
-         28,
-         12,
-         25,
-         4,
-         6,
-         15,
-         5,
-         24,
-         48,
-         38,
-         37,
-         40,
-         39,
-         36,
-         35,
-         34,
-         44,
-         46,
-         16,
-         29,
-         50,
-         20,
-         23,
-         30,
-         2,
-         7,
-         42,
-         21,
-         17,
-         3,
-         18,
-         31,
-         22
-         );
+		// 建立速度、初始粒子適應值以及粒子個體最佳適應值
+		$this->resetVelocity();
+	}
 
-         foreach ($this->_position as &$value) {
-         $value -= 1;
-         }
-         */
+	// 取得粒子位置
+	public function getPosition()
+	{
+		return $this->_position;
+	}
 
-        // 建立速度
-        $this->resetVelocity();
+	// 取得粒子適應值
+	public function getFitness()
+	{
+		return $this->_fitness;
+	}
 
-        // 建立初始粒子適應值以及粒子個體最佳適應值
-        $this->calculateFitness();
-        $this->_particleBestFitness = $this->_fitness;
-        $this->_particleBestPostion = $this->_position;
-    }
+	/**
+	 * 更新速度
+	 */
+	public function updateVelocity($globalBestPosition)
+	{
+		// 設定速度更新參數
+		$w = 0.8;
+		$c1 = 2;
+		$c2 = 2;
+		$r1 = mt_rand(0, 100) / 100;
+		$r2 = mt_rand(0, 100) / 100;
 
-    // 取得粒子位置
-    public function getPosition()
-    {
-        return $this->_position;
-    }
+		// 計算粒子和粒子最佳值以及群體最佳值距離
+		$particleDistances = $this->_calculateDistances($this->_position, $this->_particleBestPostion);
+		$globalDistances = $this->_calculateDistances($this->_position, $globalBestPosition);
 
-    // 取得粒子適應值
-    public function getFitness()
-    {
-        return $this->_fitness;
-    }
+		// 更新速度
+		for ($i = 0; $i < POINT_MAX; $i++) {
+			$this->_velocity[$i] = $w * $this->_velocity[$i] + $c1 * $r1 * $particleDistances[$i] + $c2 * $r2 * $globalDistances[$i];
+		}
+	}
 
-    /**
-     * 更新速度
-     */
-    public function updateVelocity($globalBestPosition)
-    {
-        // 設定速度更新參數
-        $w = 0.8;
-        $c1 = 2;
-        $c2 = 2;
-        $r1 = mt_rand(0, 100) / 100;
-        $r2 = mt_rand(0, 100) / 100;
+	/**
+	 * 套用粒子速度，移動到新位置
+	 */
+	public function applyVelocity()
+	{
+		// 建立套用速度的順序（隨機）
+		$order = range(0, POINT_MAX - 1);
+		shuffle($order);
 
-        // 計算粒子和粒子最佳值以及群體最佳值距離
-        $particleDistances = $this->_calculateDistances($this->_position, $this->_particleBestPostion);
-        $globalDistances = $this->_calculateDistances($this->_position, $globalBestPosition);
+		// 將粒子移動到新位置
+		$newPosition = array();
+		$newVelocity = array();
+		for ($i = 0; $i < POINT_MAX; $i++) {
 
-        // 更新速度
-        for ($i = 0; $i < POINT_MAX; $i++) {
-            $this->_velocity[$i] = $w * $this->_velocity[$i] + $c1 * $r1 * $particleDistances[$i] + $c2 * $r2 * $globalDistances[$i];
-        }
-    }
+			//$newSlot = $order[$i] + $this->_velocity[$order[$i]];
 
-    /**
-     * 套用粒子速度，移動到新位置
-     */
-    public function applyVelocity()
-    {
-        // 建立套用速度的順序（隨機）
-        $order = range(0, POINT_MAX - 1);
-        shuffle($order);
+			// 限制每次移動位置最多一格
 
-        // 將粒子移動到新位置
-        $newPosition = array();
-        $newVelocity = array();
-        for ($i = 0; $i < POINT_MAX; $i++) {
+			if ($this->_velocity[$order[$i]] > 0) {
+				$newSlot = $order[$i] + 1;
+			} elseif ($this->_velocity[$order[$i]] < 0) {
+				$newSlot = $order[$i] - 1;
+			} else {
+				$newSlot = $order[$i];
+			}
 
-            //$newSlot = $order[$i] + $this->_velocity[$order[$i]];
+			$this->_moveToNewPosiotion($newPosition, $newVelocity, $order[$i], $newSlot);
+		}
 
-            // 限制每次移動位置最多一格
-            
-            if ($this->_velocity[$order[$i]] > 0) {
-                $newSlot = $order[$i]+1;
-            } elseif ($this->_velocity[$order[$i]] < 0) {
-                $newSlot = $order[$i]-1;
-            } else {
-                $newSlot = $order[$i];
-            }
-        
-            $this->_moveToNewPosiotion($newPosition, $newVelocity, $order[$i], $newSlot);
-        }
+		$this->_position = $newPosition;
+		$this->_velocity = $newVelocity;
+	}
 
-        $this->_position = $newPosition;
-        $this->_velocity = $newVelocity;    
-    }
+	/**
+	 * 計算適應值
+	 */
+	public function calculateFitness()
+	{
+		// 重置適應值
+		$this->_fitness = 0;
 
-    /**
-     * 計算適應值
-     */
-    public function calculateFitness()
-    {
-        // 重置適應值
-        $this->_fitness = 0;
+		// 計算各點之間的距離
+		for ($i = 0; $i < POINT_MAX - 1; $i++) {
+			$x2 = pow($GLOBALS['travelPoints'][$this->_position[$i]][0] - $GLOBALS['travelPoints'][$this->_position[$i + 1]][0], 2);
+			$y2 = pow($GLOBALS['travelPoints'][$this->_position[$i]][1] - $GLOBALS['travelPoints'][$this->_position[$i + 1]][1], 2);
+			$this->_fitness += sqrt($x2 + $y2);
+		}
 
-        // 計算各點之間的距離
-        for ($i = 0; $i < POINT_MAX - 1; $i++) {
-            $x2 = pow($GLOBALS['travelPoints'][$this->_position[$i]][0] - $GLOBALS['travelPoints'][$this->_position[$i + 1]][0], 2);
-            $y2 = pow($GLOBALS['travelPoints'][$this->_position[$i]][1] - $GLOBALS['travelPoints'][$this->_position[$i + 1]][1], 2);
-            $this->_fitness += sqrt($x2 + $y2);
-        }
+		// 加上尾端到起始點的距離
+		$x2 = pow($GLOBALS['travelPoints'][0][0] - $GLOBALS['travelPoints'][POINT_MAX][0], 2);
+		$y2 = pow($GLOBALS['travelPoints'][0][1] - $GLOBALS['travelPoints'][POINT_MAX][1], 2);
+		$this->_fitness += sqrt($x2 + $y2);
 
-        // 加上尾端到起始點的距離
-        $x2 = pow($GLOBALS['travelPoints'][0][0] - $GLOBALS['travelPoints'][POINT_MAX][0], 2);
-        $y2 = pow($GLOBALS['travelPoints'][0][1] - $GLOBALS['travelPoints'][POINT_MAX][1], 2);
-        $this->_fitness += sqrt($x2 + $y2);
+		// 判斷是否為個體最佳值
+		if ($this->_fitness < $this->_particleBestFitness) {
+			$this->_particleBestPostion = $this->_position;
+			$this->_particleBestFitness = $this->_fitness;
+		}
+	}
 
-        // 判斷是否為個體最佳值
-        if ($this->_fitness < $this->_particleBestFitness) {
-            $this->_particleBestPostion = $this->_position;
-            $this->_particleBestFitness = $this->_fitness;
-        }
-    }
+	/**
+	 * 重新建立粒子速度
+	 */
+	public function resetVelocity()
+	{
+		for ($i = 0; $i < POINT_MAX; $i++) {
+			$this->_velocity[$i] = mt_rand(-6, 6);
+		}
 
-    /**
-     * 計算粒子位置間距離
-     */
-    private function _calculateDistances($array1, $array2)
-    {
-        $result = array();
-        for ($i = 0; $i < POINT_MAX; $i++) {
-            $result[$i] = array_search($array1[$i], $array2) - $i;
-        }
+		$this->calculateFitness();
+		$this->_particleBestFitness = $this->_fitness;
+		$this->_particleBestPostion = $this->_position;
+	}
 
-        return $result;
-    }
+	/**
+	 * 計算粒子位置間距離
+	 */
+	private function _calculateDistances($array1, $array2)
+	{
+		$result = array();
+		for ($i = 0; $i < POINT_MAX; $i++) {
+			$result[$i] = array_search($array1[$i], $array2) - $i;
+		}
 
-    /**
-     * 將旅行點移動到新位置
-     */
-    private function _moveToNewPosiotion(&$newPosition, &$newVelocity, $i, $newSlot)
-    {
-        // 建立探索位置參數
-        $direction = mt_rand(0, 1);
-        $range = 1;
+		return $result;
+	}
 
-        // 限制粒子位置
-        $newSlot = $this->_limitSlot($newSlot);
+	/**
+	 * 將旅行點移動到新位置
+	 */
+	private function _moveToNewPosiotion(&$newPosition, &$newVelocity, $i, $newSlot)
+	{
+		// 建立探索位置參數
+		$direction = mt_rand(0, 1);
+		$range = 1;
 
-        // 移動到新位置，如果該位置已經有點存在，或者超出移動範圍，則向鄰近的位置探尋
-        while (isset($newPosition[$newSlot]) || (($newSlot > POINT_MAX - 1) || ($newSlot < 0))) {
-            if ($direction == 0) {
-                $newSlot -= $range;
-                $direction = 1;
-            } else {
-                $newSlot += $range;
-                $direction = 0;
-            }
+		// 限制粒子位置
+		$newSlot = $this->_limitSlot($newSlot);
 
-            $range++;
-        }
+		// 移動到新位置，如果該位置已經有點存在，或者超出移動範圍，則向鄰近的位置探尋
+		while (isset($newPosition[$newSlot]) || (($newSlot > POINT_MAX - 1) || ($newSlot < 0))) {
+			if ($direction == 0) {
+				$newSlot -= $range;
+				$direction = 1;
+			} else {
+				$newSlot += $range;
+				$direction = 0;
+			}
 
-        // 將粒子位置和速度移動到新位置
-        $newPosition[$newSlot] = $this->_position[$i];
-        $newVelocity[$newSlot] = $this->_velocity[$i];
-    }
+			$range++;
+		}
 
-    /**
-     * 限制粒子移動位置
-     */
-    private function _limitSlot($slot)
-    {        
-        if ($slot > POINT_MAX - 1) {
-            return POINT_MAX - 1;
-        } elseif ($slot < 0) {
-            return 0;
-        } else {
-            return round($slot, 0);
-        }
-    }
+		// 將粒子位置和速度移動到新位置
+		$newPosition[$newSlot] = $this->_position[$i];
+		$newVelocity[$newSlot] = $this->_velocity[$i];
+	}
 
-    /**
-     * 重新建立粒子速度
-     */
-    public function resetVelocity()
-    {
-        for ($i = 0; $i < POINT_MAX; $i++) {
-            $this->_velocity[$i] = mt_rand(-6, 6);
-        }
-    }
-
-    /**
-     * 重新建立粒子位置、速度
-     */
-    public function resetAll()
-    {
-        $this->__construct();
-    }
+	/**
+	 * 限制粒子移動位置
+	 */
+	private function _limitSlot($slot)
+	{
+		if ($slot > POINT_MAX - 1) {
+			return POINT_MAX - 1;
+		} elseif ($slot < 0) {
+			return 0;
+		} else {
+			return round($slot, 0);
+		}
+	}
 
 }
 ?>
