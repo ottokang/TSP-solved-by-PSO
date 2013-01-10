@@ -15,6 +15,7 @@
 				<select name="dataSource">
 					<option value ="custom">隨機產生</option>
 					<option value ="berlin52"<?php if ($_POST['dataSource'] == 'berlin52'):?> selected="selected"<?php endif;?>>berlin52</option>
+					<option value ="eil76"<?php if ($_POST['dataSource'] == 'eil76'):?> selected="selected"<?php endif;?>>eil76</option>
 				</select>
 				<br />
 				<div id="isGenerateNewPoints">
@@ -50,6 +51,9 @@
 				<h2 id="bestFitness">實際最短路徑長：<?= $bestFitness ?></h2>
 			<?php endif;?>
 			<h2 id="fitnessHistory">粒子群最佳適應值</h2>
+			<?php if ($massExtinctionCount): ?>
+				<h2 id="massExtinctionCount">大滅絕次數：<?= $massExtinctionCount ?></h2>
+			<?php endif;?>
 			<table>
 				<?php
 				if ($fitnessHistory) {
@@ -59,7 +63,7 @@
 							echo '<tr><td>' . $generation . '：</td><td>' . $fitness . '</td></tr>';
 							$generation++;
 						} else {
-							echo '<tr><td class="distinctionCount" colspan="2">第' . $fitness[0] . '次毀滅：</td></tr>';
+							echo '<tr><td class="extinctionCount" colspan="2">第' . $fitness[0] . '次毀滅：</td></tr>';
 							$generation = 0;
 						}
 					}

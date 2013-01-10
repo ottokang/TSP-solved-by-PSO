@@ -103,22 +103,24 @@ class Swarm
 
 	/**
 	 * 重新建立粒子速度
-	 */ public function resetVelocity($distinctionCount)
+	 */
+	public function resetVelocity($distinctionCount)
 	{
-	$this->_addDistinctionTag($distinctionCount);
+		$this->_addExtinctionTag($distinctionCount);
 
-	foreach ($this->_swarm as $particle) {
-	$particle->resetVelocity();
+		foreach ($this->_swarm as $particle) {
+			$particle->resetVelocity();
+		}
+
+		$this->_initGlobalBest();
 	}
 
-	$this->_initGlobalBest();
-	}
 	/**
 	 * 重新建立粒子位置、速度
 	 */
 	public function resetAll($distinctionCount)
 	{
-		$this->_addDistinctionTag($distinctionCount);
+		$this->_addExtinctionTag($distinctionCount . '(Mass Extinction)');
 
 		foreach ($this->_swarm as $particle) {
 			$particle->__construct();
@@ -130,7 +132,7 @@ class Swarm
 	/**
 	 * 在紀錄中插入毀滅標誌
 	 */
-	private function _addDistinctionTag($distinctionCount)
+	private function _addExtinctionTag($distinctionCount)
 	{
 		$this->_globalBestFitnessHistory[] = array($distinctionCount);
 	}

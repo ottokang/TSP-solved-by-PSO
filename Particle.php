@@ -52,7 +52,7 @@ class Particle
 	public function updateVelocity($globalBestPosition)
 	{
 		// 設定速度更新參數
-		$w = 0.8;
+		$w = 0.5;
 		$c1 = 2;
 		$c2 = 2;
 		$r1 = mt_rand(0, 100) / 100;
@@ -81,11 +81,7 @@ class Particle
 		$newPosition = array();
 		$newVelocity = array();
 		for ($i = 0; $i < POINT_MAX; $i++) {
-
-			//$newSlot = $order[$i] + $this->_velocity[$order[$i]];
-
 			// 限制每次移動位置最多一格
-
 			if ($this->_velocity[$order[$i]] > 0) {
 				$newSlot = $order[$i] + 1;
 			} elseif ($this->_velocity[$order[$i]] < 0) {

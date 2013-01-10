@@ -3,23 +3,25 @@
  * 以粒子群最佳化演算法（Particle swarm optimization）解決旅行商問題（Travelling salesman problem）
  * 程式作者：康家豪
  */
-set_time_limit(180);
 require_once 'Particle.php';
 require_once 'Swarm.php';
 
+// 最大允許執行時間
+set_time_limit(180);
+
 // 粒子數量
-define('PARTICLE_COUNT', 10);
+define('PARTICLE_COUNT', 50);
 
 // 演算迭代量
-define('ITERATION_COUNT', 20);
+define('ITERATION_COUNT', 50);
 
 // 毀滅次數
-define('DISTICNTION_COUNT', 5);
+define('EXTINCTION_COUNT', 50);
 
-// 繪圖區padding
+// 繪圖區大小
 define('PAINT_SIZE', 800);
 
-// 繪圖區padding
+// 繪圖區邊界距離
 define('PAINT_PADDING', 40);
 
 if ($_POST) {
@@ -61,24 +63,34 @@ if ($_POST) {
 		require 'berlin52.php';
 		$GLOBALS['travelPoints'] = $tspData;
 		define('POINT_MAX', count($tspData));
+	} elseif ($_POST['dataSource'] == 'eil76') {
+		// 使用eil76為資料
+		require 'eil76.php';
+		$GLOBALS['travelPoints'] = $tspData;
+		define('POINT_MAX', count($tspData));
 	}
 
-	$result = array();
 
-	//是否直接顯示最佳結果
+	// 判斷是否直接顯示最佳結果
+	$result = array();
 	if ($_POST['isShowBest'] == 1) {
 		$particle = new Particle($bestOrder);
 		$particle->calculateFitness();
-
 		$result[position] = $bestOrder;
 		$result[fitness] = $particle->getFitness();
-
 	} else {
-		// 進行計算，取得最佳結果
+		// 或者進行計算
 		$swarm = new Swarm();
-		for ($d = 0; $d < DISTICNTION_COUNT; $d++) {
-			if ($d > 0) {
+		$noProgressExtinction = 0;
+		$massExtinctionCount = 0;
+		for ($d = 0; $d < EXTINCTION_COUNT; $d++) {
+			// 進行粒子毀滅，判斷是否在沒有改進的毀滅次數到達一定程度後，進行大滅絕（位置重置）
+			if ($d > 0 && $noProgressExtinction < 8) {
 				$swarm->resetVelocity($d);
+			} elseif ($d > 0 && $noProgressExtinction > 7) {
+				$swarm->resetAll($d);
+				$noProgressExtinction = 0;
+				$massExtinctionCount++;
 			}
 
 			for ($i = 0; $i < ITERATION_COUNT; $i++) {
@@ -91,9 +103,11 @@ if ($_POST) {
 			if ($d == 0 || $swarm->getBestFitness() < $result[fitness]) {
 				$result[fitness] = $swarm->getBestFitness();
 				$result[position] = $swarm->getBestPosition();
+				$noProgressExtinction = 0;
+			} else {
+				$noProgressExtinction++;
 			}
 		}
-
 		// 紀錄最佳適應值歷史資料
 		$fitnessHistory = $swarm->getGlobalBestFitnessHistory();
 	}
