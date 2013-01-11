@@ -16,6 +16,9 @@ class Swarm
 	// 群體最佳值歷程
 	private $_globalBestFitnessHistory = array();
 
+	// 未改進次數
+	private $_noProgressCount = 0;
+
 	/**
 	 * 建構子，產生粒子群體
 	 */
@@ -62,16 +65,24 @@ class Swarm
 	}
 
 	/**
-	 * 設定粒子群最佳解，將最佳解記錄下來
+	 * 設定粒子群最佳解，將最佳解記錄到歷程中，設定是否有改進
 	 */
 	public function findGlobalBest()
 	{
+		$isProgress = false;
 		for ($i = 0; $i < PARTICLE_COUNT; $i++) {
 			$fitness[] = ceil($this->_swarm[$i]->getFitness());
 			if ($this->_swarm[$i]->getFitness() < $this->_globalBestFitness) {
 				$this->_globalBestPosition = $this->_swarm[$i]->getPosition();
 				$this->_globalBestFitness = $this->_swarm[$i]->getFitness();
+				$isProgress = true;
 			}
+		}
+
+		if ($isProgress == true) {
+			$this->restNoProgressCount();
+		} else {
+			$this->_noProgressCount++;
 		}
 
 		$this->_globalBestFitnessHistory[] = $this->_globalBestFitness;
@@ -102,7 +113,23 @@ class Swarm
 	}
 
 	/**
-	 * 重新建立粒子速度
+	 * 取得群體未改進迭代數
+	 */
+	public function getNoProgressCount()
+	{
+		return $this->_noProgressCount;
+	}
+
+	/**
+	 * 重設群體未改進迭代數
+	 */
+	public function restNoProgressCount()
+	{
+		$this->_noProgressCount = 0;
+	}
+
+	/**
+	 * 重新建立粒子速度，不重置群體最佳值
 	 */
 	public function resetVelocity($distinctionCount)
 	{
@@ -111,12 +138,10 @@ class Swarm
 		foreach ($this->_swarm as $particle) {
 			$particle->resetVelocity();
 		}
-
-		$this->_initGlobalBest();
 	}
 
 	/**
-	 * 重新建立粒子位置、速度
+	 * 重新建立粒子位置、速度，群體最佳值
 	 */
 	public function resetAll($distinctionCount)
 	{

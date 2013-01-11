@@ -18,6 +18,9 @@ define('ITERATION_COUNT', 50);
 // 毀滅次數
 define('EXTINCTION_COUNT', 50);
 
+// 最大未改進迭代數
+define('MAX_NO_PROGRESS_COUNT', 15);
+
 // 繪圖區大小
 define('PAINT_SIZE', 800);
 
@@ -93,13 +96,20 @@ if ($_POST) {
 				$massExtinctionCount++;
 			}
 
+			// 進行粒子群演算
 			for ($i = 0; $i < ITERATION_COUNT; $i++) {
 				$swarm->updateParticleVelocity();
 				$swarm->applyParticleVelocity();
 				$swarm->calculateParticleFitness();
 				$swarm->findGlobalBest();
+				// 檢查是否要提前結束運算
+				if ($swarm->getNoProgressCount() > MAX_NO_PROGRESS_COUNT) {
+					$swarm->restNoProgressCount();
+					break;
+				}
 			}
 
+			// 紀錄最佳結果
 			if ($d == 0 || $swarm->getBestFitness() < $result[fitness]) {
 				$result[fitness] = $swarm->getBestFitness();
 				$result[position] = $swarm->getBestPosition();
