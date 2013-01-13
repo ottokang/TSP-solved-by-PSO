@@ -7,7 +7,7 @@ require_once 'Particle.php';
 require_once 'Swarm.php';
 
 // 最大允許執行時間
-set_time_limit(180);
+set_time_limit(3600);
 
 // 粒子數量
 define('PARTICLE_COUNT', $_POST['particleCount']);
@@ -33,6 +33,9 @@ define('PAINT_PADDING', 40);
 if ($_POST) {
 	// 設定開始時間
 	$timeStart = microtime(true);
+
+	// 啟動進度條
+	require 'progress.php';
 
 	// 判斷資料來源
 	if ($_POST['dataSource'] == 'custom') {
@@ -90,6 +93,9 @@ if ($_POST) {
 		$massExtinctionCount = 0;
 
 		for ($extinction = 0; $extinction <= EXTINCTION_COUNT; $extinction++) {
+			// 顯示進度
+			echo '<script>document.getElementById("progress").setAttribute("value",' . $extinction . ')</script>' . str_repeat(' ', 1024 * 64);
+
 			// 進行粒子毀滅，判斷是否在沒有改進的毀滅次數到達一定程度後，進行大滅絕（位置重置）
 			if ($extinction > 0 && $noProgressExtinction < MAX_NO_PROGRESS_EXTINCTION_COUNT) {
 				$swarm->resetVelocity($extinction);

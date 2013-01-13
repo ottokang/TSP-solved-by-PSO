@@ -34,32 +34,32 @@
 
 				<span id="travelPointCount">
 					<label for="travelPointCountInput">旅行點數量：</label>
-					<input type="text" id="travelPointCountInput" name="travelPointCount" required="required" placeholder="1 ～ 99" pattern="[0-9]{1,2}" title="請輸入1 ～ 99之間的數字" value="<?php echo $_POST['travelPointCount'] ?>" />
+					<input type="text" id="travelPointCountInput" name="travelPointCount" required="required" placeholder="1 ～ 99" pattern="[0-9]{1,2}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['travelPointCount'] ?>" />
 					&nbsp;&nbsp;&nbsp;
 				</span>
 
 				<label for="particleCount">運算粒子數：</label>
-				<input type="text" id="particleCount" name="particleCount" required="required" placeholder="1 ～ 99" pattern="[0-9]{1,2}" title="請輸入1 ～ 99之間的數字" value="<?php echo $_POST['particleCount'] ?>" />
+				<input type="text" id="particleCount" name="particleCount" required="required" placeholder="1 ～ 999" pattern="[0-9]{1,3}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['particleCount'] ?>" />
 				&nbsp;&nbsp;&nbsp;
 
 				<label for="iterationCount">迭代量：</label>
-				<input type="text" id="iterationCount" name="iterationCount" required="required" placeholder="1 ～ 99" pattern="[0-9]{1,2}" title="請輸入1 ～ 99之間的數字" value="<?php echo $_POST['iterationCount'] ?>" />
+				<input type="text" id="iterationCount" name="iterationCount" required="required" placeholder="1 ～ 999" pattern="[0-9]{1,3}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['iterationCount'] ?>" />
 				&nbsp;&nbsp;&nbsp;
 
 				<label for="maxNoProgressIterationCount">未改進終止迭代量：</label>
-				<input type="text" id="maxNoProgressIterationCount" name="maxNoProgressIterationCount" required="required" placeholder="1 ～ 99" pattern="[0-9]{1,2}" title="請輸入1 ～ 99之間的數字" value="<?php echo $_POST['maxNoProgressIterationCount'] ?>" />
+				<input type="text" id="maxNoProgressIterationCount" name="maxNoProgressIterationCount" required="required" placeholder="1 ～ 999" pattern="[0-9]{1,9}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['maxNoProgressIterationCount'] ?>" />
 				&nbsp;&nbsp;&nbsp;
 
 				<br />
 				<br />
 
 				<label for="extinctionCount">速度重置（毀滅）數：</label>
-				<input type="text" id="extinctionCount" name="extinctionCount" required="required" placeholder="1 ~ 99" pattern="[0-9]{1,2}" title="請輸入1 ～ 99之間的數字" value="<?php echo $_POST['extinctionCount'] ?>" />
+				<input type="text" id="extinctionCount" name="extinctionCount" required="required" placeholder="1 ~ 999" pattern="[0-9]{1,3}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['extinctionCount'] ?>" />
 				&nbsp;&nbsp;&nbsp;
 
 
 				<label for="maxNoProgressExtinctionCount">未改進速度重置數（觸發大滅絕）：</label>
-				<input type="text" id="maxNoProgressExtinctionCount" name="maxNoProgressExtinctionCount" required="required" placeholder="1 ~ 99" pattern="[0-9]{1,2}" title="請輸入1 ～ 99之間的數字" value="<?php echo $_POST['maxNoProgressExtinctionCount'] ?>" />
+				<input type="text" id="maxNoProgressExtinctionCount" name="maxNoProgressExtinctionCount" required="required" placeholder="1 ~ 999" pattern="[0-9]{1,3}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['maxNoProgressExtinctionCount'] ?>" />
 				&nbsp;&nbsp;&nbsp;
 
 				<br />
@@ -120,6 +120,9 @@
 		<?php endif; ?>
 	<script src="jquery-1.8.3.min.js"></script>
 	<script>
+		// 清除進度條
+		$('#progressBar').remove();
+
         function showCustomInput() {
             $('#isGenerateNewPoints').show();
             $('#travelPointCount').show();
