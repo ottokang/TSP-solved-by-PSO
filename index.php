@@ -10,16 +10,16 @@ require_once 'Swarm.php';
 set_time_limit(180);
 
 // 粒子數量
-define('PARTICLE_COUNT', 50);
+define('PARTICLE_COUNT', 30);
 
 // 演算迭代量
 define('ITERATION_COUNT', 50);
 
-// 毀滅次數
-define('EXTINCTION_COUNT', 50);
-
 // 最大未改進迭代數
-define('MAX_NO_PROGRESS_COUNT', 15);
+define('MAX_NO_PROGRESS_COUNT', 50);
+
+// 速度重置（毀滅）次數
+define('EXTINCTION_COUNT', 0);
 
 // 繪圖區大小
 define('PAINT_SIZE', 800);
@@ -35,7 +35,7 @@ if ($_POST) {
 	if ($_POST['dataSource'] == 'custom') {
 
 		// 旅行點數量
-		define('POINT_MAX', 20);
+		define('POINT_MAX', 15);
 
 		// 判斷是否產生新的旅行點產生隨機旅行點
 		if ($_POST['isGenerateNewPoints'] == 1 || count($_POST['pointsInput']) == 0) {
@@ -86,12 +86,13 @@ if ($_POST) {
 		$swarm = new Swarm();
 		$noProgressExtinction = 0;
 		$massExtinctionCount = 0;
-		for ($d = 0; $d < EXTINCTION_COUNT; $d++) {
+
+		for ($extinction = 0; $extinction <= EXTINCTION_COUNT; $extinction++) {
 			// 進行粒子毀滅，判斷是否在沒有改進的毀滅次數到達一定程度後，進行大滅絕（位置重置）
-			if ($d > 0 && $noProgressExtinction < 8) {
-				$swarm->resetVelocity($d);
-			} elseif ($d > 0 && $noProgressExtinction > 7) {
-				$swarm->resetAll($d);
+			if ($extinction > 0 && $noProgressExtinction < 8) {
+				$swarm->resetVelocity($extinction);
+			} elseif ($extinction > 0 && $noProgressExtinction > 7) {
+				$swarm->resetAll($extinction);
 				$noProgressExtinction = 0;
 				$massExtinctionCount++;
 			}
@@ -110,7 +111,7 @@ if ($_POST) {
 			}
 
 			// 紀錄最佳結果
-			if ($d == 0 || $swarm->getBestFitness() < $result[fitness]) {
+			if ($extinction == 0 || $swarm->getBestFitness() < $result[fitness]) {
 				$result[fitness] = $swarm->getBestFitness();
 				$result[position] = $swarm->getBestPosition();
 				$noProgressExtinction = 0;
