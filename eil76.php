@@ -3,7 +3,7 @@
 $scale = 10;
 
 // 最佳值
-$bestFitness = 571.12;
+$bestFitness = 545.39;
 
 // 最佳順序
 $bestOrder = array(

@@ -145,7 +145,7 @@ class Swarm
 	 */
 	public function resetAll($distinctionCount)
 	{
-		$this->_addExtinctionTag($distinctionCount . '(Mass Extinction)');
+		$this->_addExtinctionTag($distinctionCount . '(大滅絕)');
 
 		foreach ($this->_swarm as $particle) {
 			$particle->__construct();

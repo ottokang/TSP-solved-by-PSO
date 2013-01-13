@@ -10,16 +10,19 @@ require_once 'Swarm.php';
 set_time_limit(180);
 
 // 粒子數量
-define('PARTICLE_COUNT', 30);
+define('PARTICLE_COUNT', $_POST['particleCount']);
 
 // 演算迭代量
-define('ITERATION_COUNT', 50);
+define('ITERATION_COUNT', $_POST['iterationCount']);
 
 // 最大未改進迭代數
-define('MAX_NO_PROGRESS_COUNT', 50);
+define('MAX_NO_PROGRESS_ITERATION_COUNT', $_POST['maxNoProgressIterationCount']);
 
 // 速度重置（毀滅）次數
-define('EXTINCTION_COUNT', 0);
+define('EXTINCTION_COUNT', $_POST['extinctionCount']);
+
+// 最大未改進速度重置（毀滅）次數
+define('MAX_NO_PROGRESS_EXTINCTION_COUNT', $_POST['maxNoProgressExtinctionCount']);
 
 // 繪圖區大小
 define('PAINT_SIZE', 800);
@@ -35,7 +38,7 @@ if ($_POST) {
 	if ($_POST['dataSource'] == 'custom') {
 
 		// 旅行點數量
-		define('POINT_MAX', 15);
+		define('POINT_MAX', $_POST['travelPointCount']);
 
 		// 判斷是否產生新的旅行點產生隨機旅行點
 		if ($_POST['isGenerateNewPoints'] == 1 || count($_POST['pointsInput']) == 0) {
@@ -73,7 +76,6 @@ if ($_POST) {
 		define('POINT_MAX', count($tspData));
 	}
 
-
 	// 判斷是否直接顯示最佳結果
 	$result = array();
 	if ($_POST['isShowBest'] == 1) {
@@ -89,10 +91,12 @@ if ($_POST) {
 
 		for ($extinction = 0; $extinction <= EXTINCTION_COUNT; $extinction++) {
 			// 進行粒子毀滅，判斷是否在沒有改進的毀滅次數到達一定程度後，進行大滅絕（位置重置）
-			if ($extinction > 0 && $noProgressExtinction < 8) {
+			if ($extinction > 0 && $noProgressExtinction < MAX_NO_PROGRESS_EXTINCTION_COUNT) {
 				$swarm->resetVelocity($extinction);
-			} elseif ($extinction > 0 && $noProgressExtinction > 7) {
+				$swarm->restNoProgressCount();
+			} elseif ($extinction > 0 && $noProgressExtinction > MAX_NO_PROGRESS_EXTINCTION_COUNT - 1) {
 				$swarm->resetAll($extinction);
+				$swarm->restNoProgressCount();
 				$noProgressExtinction = 0;
 				$massExtinctionCount++;
 			}
@@ -104,7 +108,7 @@ if ($_POST) {
 				$swarm->calculateParticleFitness();
 				$swarm->findGlobalBest();
 				// 檢查是否要提前結束運算
-				if ($swarm->getNoProgressCount() > MAX_NO_PROGRESS_COUNT) {
+				if ($swarm->getNoProgressCount() > MAX_NO_PROGRESS_ITERATION_COUNT) {
 					$swarm->restNoProgressCount();
 					break;
 				}

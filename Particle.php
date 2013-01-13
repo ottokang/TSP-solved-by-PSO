@@ -113,8 +113,8 @@ class Particle
 		}
 
 		// 加上尾端到起始點的距離
-		$x2 = pow($GLOBALS['travelPoints'][0][0] - $GLOBALS['travelPoints'][POINT_MAX][0], 2);
-		$y2 = pow($GLOBALS['travelPoints'][0][1] - $GLOBALS['travelPoints'][POINT_MAX][1], 2);
+		$x2 = pow($GLOBALS['travelPoints'][$this->_position[0]][0] - $GLOBALS['travelPoints'][$this->_position[$i]][0], 2);
+		$y2 = pow($GLOBALS['travelPoints'][$this->_position[0]][1] - $GLOBALS['travelPoints'][$this->_position[$i]][1], 2);
 		$this->_fitness += sqrt($x2 + $y2);
 
 		// 判斷是否為個體最佳值

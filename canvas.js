@@ -21,8 +21,10 @@ function drawAll() {
         drawLine(lineVertex.x1, lineVertex.y1, lineVertex.x2, lineVertex.y2);
     }
 
-    // 繪製最後點
+    // 繪製最後點、最後線
     drawPoint(points[route[route.length - 1]][0], points[route[route.length - 1]][1], route.length, points[route[route.length - 1]].coordinate);
+    lineVertex = adjustLineLength(points[route[route.length - 1]], points[route[0]]);
+    drawLine(lineVertex.x1, lineVertex.y1, lineVertex.x2, lineVertex.y2, '#FF9900');
 };
 
 /**
@@ -59,10 +61,12 @@ function drawPoint(x, y, order, coordinate) {
  * @param {Object} y1
  * @param {Object} x2
  * @param {Object} y2
+ * @param {String} color
  */
-function drawLine(x1, y1, x2, y2) {
+function drawLine(x1, y1, x2, y2, color) {
+    color = ((color != null) ? color : '#9A9A9A');
     ctx.beginPath();
-    ctx.strokeStyle = '#9A9A9A';
+    ctx.strokeStyle = color;
     ctx.lineWidth = lineWidth;
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);

@@ -1,6 +1,15 @@
 body {
-    font-size: 12px;
+    font-size: 14px;
     padding: 0.5em;
+}
+
+#autor {
+    color: gray;
+    font-size: 120%;
+}
+
+#systemMessage {
+    margin: 3px 0;
 }
 
 #paintArea {
@@ -11,4 +20,14 @@ body {
 #result {
     position: absolute;
     left: 900px;
+}
+
+#result h2 {
+    margin: 5px 0;
+}
+
+#result .extinctionCount {
+    color: blue;
+    font-size: 130%;
+    text-align: center;
 }
