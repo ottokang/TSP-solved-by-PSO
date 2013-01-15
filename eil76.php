@@ -1,10 +1,12 @@
 <?php
-// 座�?縮放
+// 座標縮放
 $scale = 10;
 
-// ?�佳�?$bestFitness = 545.39;
+// 最佳值
+$bestFitness = 545.39;
 
-// ?�佳�?�?$bestOrder = array(
+// 最佳順序
+$bestOrder = array(
 	1,
 	33,
 	63,

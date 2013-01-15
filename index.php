@@ -9,21 +9,6 @@ require_once 'Swarm.php';
 // 最大允許執行時間
 set_time_limit(3600);
 
-// 粒子數量
-define('PARTICLE_COUNT', $_POST['particleCount']);
-
-// 演算迭代量
-define('ITERATION_COUNT', $_POST['iterationCount']);
-
-// 最大未改進迭代數
-define('MAX_NO_PROGRESS_ITERATION_COUNT', $_POST['maxNoProgressIterationCount']);
-
-// 速度重置（毀滅）次數
-define('EXTINCTION_COUNT', $_POST['extinctionCount']);
-
-// 最大未改進速度重置（毀滅）次數
-define('MAX_NO_PROGRESS_EXTINCTION_COUNT', $_POST['maxNoProgressExtinctionCount']);
-
 // 繪圖區大小
 define('PAINT_SIZE', 800);
 
@@ -33,6 +18,21 @@ define('PAINT_PADDING', 40);
 if ($_POST) {
     // 設定開始時間
     $timeStart = microtime(true);
+
+    // 粒子數量
+    define('PARTICLE_COUNT', $_POST['particleCount']);
+
+    // 演算迭代量
+    define('ITERATION_COUNT', $_POST['iterationCount']);
+
+    // 最大未改進迭代數
+    define('MAX_NO_PROGRESS_ITERATION_COUNT', $_POST['maxNoProgressIterationCount']);
+
+    // 速度重置（毀滅）次數
+    define('EXTINCTION_COUNT', $_POST['extinctionCount']);
+
+    // 最大未改進速度重置（毀滅）次數
+    define('MAX_NO_PROGRESS_EXTINCTION_COUNT', $_POST['maxNoProgressExtinctionCount']);
 
     // 判斷資料來源
     if ($_POST['dataSource'] == 'custom') {
