@@ -1,12 +1,10 @@
 <?php
-// 座標縮放
+// 座�?縮放
 $scale = 0.43;
 
-// 最佳值
-$bestFitness = 7544.37;
+// ?�佳�?$bestFitness = 7544.37;
 
-// 最佳順序
-$bestOrder = array(
+// ?�佳�?�?$bestOrder = array(
 	1,
 	49,
 	32,
@@ -84,227 +82,227 @@ $tspData = array(
 	array(
 		945,
 		685,
-		'coordinate' => '()'
+		'coordinate' => '(945,685)'
 	),
 	array(
 		845,
 		655,
-		'coordinate' => '()'
+		'coordinate' => '(845,655)'
 	),
 	array(
 		880,
 		660,
-		'coordinate' => '()'
+		'coordinate' => '(880,660)'
 	),
 	array(
 		25,
 		230,
-		'coordinate' => '()'
+		'coordinate' => '(25,230)'
 	),
 	array(
 		525,
 		1000,
-		'coordinate' => '()'
+		'coordinate' => '(525,1000)'
 	),
 	array(
 		580,
 		1175,
-		'coordinate' => '()'
+		'coordinate' => '(580,1175)'
 	),
 	array(
 		650,
 		1130,
-		'coordinate' => '()'
+		'coordinate' => '(650,1130)'
 	),
 	array(
 		1605,
 		620,
-		'coordinate' => '()'
+		'coordinate' => '(1605,620)'
 	),
 	array(
 		1220,
 		580,
-		'coordinate' => '()'
+		'coordinate' => '(1220,580)'
 	),
 	array(
 		1465,
 		200,
-		'coordinate' => '()'
+		'coordinate' => '(1465,200)'
 	),
 	array(
 		1530,
 		5,
-		'coordinate' => '()'
+		'coordinate' => '(1530,5)'
 	),
 	array(
 		845,
 		680,
-		'coordinate' => '()'
+		'coordinate' => '(845,680)'
 	),
 	array(
 		725,
 		370,
-		'coordinate' => '()'
+		'coordinate' => '(725,370)'
 	),
 	array(
 		145,
 		665,
-		'coordinate' => '()'
+		'coordinate' => '(145,665)'
 	),
 	array(
 		415,
 		635,
-		'coordinate' => '()'
+		'coordinate' => '(415,635)'
 	),
 	array(
 		510,
 		875,
-		'coordinate' => '()'
+		'coordinate' => '(510,875)'
 	),
 	array(
 		560,
 		365,
-		'coordinate' => '()'
+		'coordinate' => '(560,365)'
 	),
 	array(
 		300,
 		465,
-		'coordinate' => '()'
+		'coordinate' => '(300,465)'
 	),
 	array(
 		520,
 		585,
-		'coordinate' => '()'
+		'coordinate' => '(520,585)'
 	),
 	array(
 		480,
 		415,
-		'coordinate' => '()'
+		'coordinate' => '(480,415)'
 	),
 	array(
 		835,
 		625,
-		'coordinate' => '()'
+		'coordinate' => '(835,625)'
 	),
 	array(
 		975,
 		580,
-		'coordinate' => '()'
+		'coordinate' => '(975,580)'
 	),
 	array(
 		1215,
 		245,
-		'coordinate' => '()'
+		'coordinate' => '(1215,245)'
 	),
 	array(
 		1320,
 		315,
-		'coordinate' => '()'
+		'coordinate' => '(1320,315)'
 	),
 	array(
 		1250,
 		400,
-		'coordinate' => '()'
+		'coordinate' => '(1250,400)'
 	),
 	array(
 		660,
 		180,
-		'coordinate' => '()'
+		'coordinate' => '(660,180)'
 	),
 	array(
 		410,
 		250,
-		'coordinate' => '()'
+		'coordinate' => '(410,250)'
 	),
 	array(
 		420,
 		555,
-		'coordinate' => '()'
+		'coordinate' => '(420,555)'
 	),
 	array(
 		575,
 		665,
-		'coordinate' => '()'
+		'coordinate' => '(575,665)'
 	),
 	array(
 		1150,
 		1160,
-		'coordinate' => '()'
+		'coordinate' => '(1150,1160)'
 	),
 	array(
 		700,
 		580,
-		'coordinate' => '()'
+		'coordinate' => '(700,580)'
 	),
 	array(
 		685,
 		595,
-		'coordinate' => '()'
+		'coordinate' => '(685,595)'
 	),
 	array(
 		685,
 		610,
-		'coordinate' => '()'
+		'coordinate' => '(685,610)'
 	),
 	array(
 		770,
 		610,
-		'coordinate' => '()'
+		'coordinate' => '(770,610)'
 	),
 	array(
 		795,
 		645,
-		'coordinate' => '()'
+		'coordinate' => '(795,645)'
 	),
 	array(
 		720,
 		635,
-		'coordinate' => '()'
+		'coordinate' => '(720,635)'
 	),
 	array(
 		760,
 		650,
-		'coordinate' => '()'
+		'coordinate' => '(760,650)'
 	),
 	array(
 		475,
 		960,
-		'coordinate' => '()'
+		'coordinate' => '(475,960)'
 	),
 	array(
 		95,
 		260,
-		'coordinate' => '()'
+		'coordinate' => '(95,260)'
 	),
 	array(
 		875,
 		920,
-		'coordinate' => '()'
+		'coordinate' => '(875,920)'
 	),
 	array(
 		700,
 		500,
-		'coordinate' => '()'
+		'coordinate' => '(700,500)'
 	),
 	array(
 		555,
 		815,
-		'coordinate' => '()'
+		'coordinate' => '(555,815)'
 	),
 	array(
 		830,
 		485,
-		'coordinate' => '()'
+		'coordinate' => '(830,485)'
 	),
 	array(
 		1170,
 		65,
-		'coordinate' => '()'
+		'coordinate' => '(1170,65)'
 	),
 	array(
 		830,
 		610,
-		'coordinate' => '()'
+		'coordinate' => '(830,610)'
 	),
 	array(
 		605,
