@@ -54,7 +54,7 @@
 				<br />
 
 				<label for="extinctionCount">速度重置（毀滅）數：</label>
-				<input type="text" id="extinctionCount" name="extinctionCount" required="required" placeholder="1 ~ 999" pattern="[0-9]{1,3}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['extinctionCount'] ?>" />
+				<input type="text" id="extinctionCount" name="extinctionCount" required="required" placeholder="0 ~ 999" pattern="[0-9]{1,3}" title="請輸入0 ～ 999之間的數字" value="<?php echo $_POST['extinctionCount'] ?>" />
 				&nbsp;&nbsp;&nbsp;
 
 
