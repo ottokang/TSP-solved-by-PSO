@@ -1,12 +1,10 @@
 <?php
-// 座標縮放
+// 座�?縮放
 $scale = 10;
 
-// 最佳值
-$bestFitness = 545.39;
+// ?�佳�?$bestFitness = 545.39;
 
-// 最佳順序
-$bestOrder = array(
+// ?�佳�?�?$bestOrder = array(
 	1,
 	33,
 	63,
@@ -93,382 +91,382 @@ $tspData = array(
 	array(
 		22,
 		22,
-		'coordinate' => '()'
+		'coordinate' => '(22,22)'
 	),
 	array(
 		36,
 		26,
-		'coordinate' => '()'
+		'coordinate' => '(36,26)'
 	),
 	array(
 		21,
 		45,
-		'coordinate' => '()'
+		'coordinate' => '(21,45)'
 	),
 	array(
 		45,
 		35,
-		'coordinate' => '()'
+		'coordinate' => '(45,35)'
 	),
 	array(
 		55,
 		20,
-		'coordinate' => '()'
+		'coordinate' => '(55,20)'
 	),
 	array(
 		33,
 		34,
-		'coordinate' => '()'
+		'coordinate' => '(33,34)'
 	),
 	array(
 		50,
 		50,
-		'coordinate' => '()'
+		'coordinate' => '(50,50)'
 	),
 	array(
 		55,
 		45,
-		'coordinate' => '()'
+		'coordinate' => '(55,45)'
 	),
 	array(
 		26,
 		59,
-		'coordinate' => '()'
+		'coordinate' => '(26,59)'
 	),
 	array(
 		40,
 		66,
-		'coordinate' => '()'
+		'coordinate' => '(40,66)'
 	),
 	array(
 		55,
 		65,
-		'coordinate' => '()'
+		'coordinate' => '(55,65)'
 	),
 	array(
 		35,
 		51,
-		'coordinate' => '()'
+		'coordinate' => '(35,51)'
 	),
 	array(
 		62,
 		35,
-		'coordinate' => '()'
+		'coordinate' => '(62,35)'
 	),
 	array(
 		62,
 		57,
-		'coordinate' => '()'
+		'coordinate' => '(62,57)'
 	),
 	array(
 		62,
 		24,
-		'coordinate' => '()'
+		'coordinate' => '(62,24)'
 	),
 	array(
 		21,
 		36,
-		'coordinate' => '()'
+		'coordinate' => '(21,36)'
 	),
 	array(
 		33,
 		44,
-		'coordinate' => '()'
+		'coordinate' => '(33,44)'
 	),
 	array(
 		9,
 		56,
-		'coordinate' => '()'
+		'coordinate' => '(9,56)'
 	),
 	array(
 		62,
 		48,
-		'coordinate' => '()'
+		'coordinate' => '(62,48)'
 	),
 	array(
 		66,
 		14,
-		'coordinate' => '()'
+		'coordinate' => '(66,14)'
 	),
 	array(
 		44,
 		13,
-		'coordinate' => '()'
+		'coordinate' => '(44,13)'
 	),
 	array(
 		26,
 		13,
-		'coordinate' => '()'
+		'coordinate' => '(26,13)'
 	),
 	array(
 		11,
 		28,
-		'coordinate' => '()'
+		'coordinate' => '(11,28)'
 	),
 	array(
 		7,
 		43,
-		'coordinate' => '()'
+		'coordinate' => '(7,43)'
 	),
 	array(
 		17,
 		64,
-		'coordinate' => '()'
+		'coordinate' => '(17,64)'
 	),
 	array(
 		41,
 		46,
-		'coordinate' => '()'
+		'coordinate' => '(41,46)'
 	),
 	array(
 		55,
 		34,
-		'coordinate' => '()'
+		'coordinate' => '(55,34)'
 	),
 	array(
 		35,
 		16,
-		'coordinate' => '()'
+		'coordinate' => '(35,16)'
 	),
 	array(
 		52,
 		26,
-		'coordinate' => '()'
+		'coordinate' => '(52,26)'
 	),
 	array(
 		43,
 		26,
-		'coordinate' => '()'
+		'coordinate' => '(43,26)'
 	),
 	array(
 		31,
 		76,
-		'coordinate' => '()'
+		'coordinate' => '(31,76)'
 	),
 	array(
 		22,
 		53,
-		'coordinate' => '()'
+		'coordinate' => '(22,53)'
 	),
 	array(
 		26,
 		29,
-		'coordinate' => '()'
+		'coordinate' => '(26,29)'
 	),
 	array(
 		50,
 		40,
-		'coordinate' => '()'
+		'coordinate' => '(50,40)'
 	),
 	array(
 		55,
 		50,
-		'coordinate' => '()'
+		'coordinate' => '(55,50)'
 	),
 	array(
 		54,
 		10,
-		'coordinate' => '()'
+		'coordinate' => '(54,10)'
 	),
 	array(
 		60,
 		15,
-		'coordinate' => '()'
+		'coordinate' => '(60,15)'
 	),
 	array(
 		47,
 		66,
-		'coordinate' => '()'
+		'coordinate' => '(47,66)'
 	),
 	array(
 		30,
 		60,
-		'coordinate' => '()'
+		'coordinate' => '(30,60)'
 	),
 	array(
 		30,
 		50,
-		'coordinate' => '()'
+		'coordinate' => '(30,50)'
 	),
 	array(
 		12,
 		17,
-		'coordinate' => '()'
+		'coordinate' => '(12,17)'
 	),
 	array(
 		15,
 		14,
-		'coordinate' => '()'
+		'coordinate' => '(15,14)'
 	),
 	array(
 		16,
 		19,
-		'coordinate' => '()'
+		'coordinate' => '(16,19)'
 	),
 	array(
 		21,
 		48,
-		'coordinate' => '()'
+		'coordinate' => '(21,48)'
 	),
 	array(
 		50,
 		30,
-		'coordinate' => '()'
+		'coordinate' => '(50,30)'
 	),
 	array(
 		51,
 		42,
-		'coordinate' => '()'
+		'coordinate' => '(51,42)'
 	),
 	array(
 		50,
 		15,
-		'coordinate' => '()'
+		'coordinate' => '(50,15)'
 	),
 	array(
 		48,
 		21,
-		'coordinate' => '()'
+		'coordinate' => '(48,21)'
 	),
 	array(
 		12,
 		38,
-		'coordinate' => '()'
+		'coordinate' => '(12,38)'
 	),
 	array(
 		15,
 		56,
-		'coordinate' => '()'
+		'coordinate' => '(15,56)'
 	),
 	array(
 		29,
 		39,
-		'coordinate' => '()'
+		'coordinate' => '(29,39)'
 	),
 	array(
 		54,
 		38,
-		'coordinate' => '()'
+		'coordinate' => '(54,38)'
 	),
 	array(
 		55,
 		57,
-		'coordinate' => '()'
+		'coordinate' => '(55,57)'
 	),
 	array(
 		67,
 		41,
-		'coordinate' => '()'
+		'coordinate' => '(67,41)'
 	),
 	array(
 		10,
 		70,
-		'coordinate' => '()'
+		'coordinate' => '(10,70)'
 	),
 	array(
 		6,
 		25,
-		'coordinate' => '()'
+		'coordinate' => '(6,25)'
 	),
 	array(
 		65,
 		27,
-		'coordinate' => '()'
+		'coordinate' => '(65,27)'
 	),
 	array(
 		40,
 		60,
-		'coordinate' => '()'
+		'coordinate' => '(40,60)'
 	),
 	array(
 		70,
 		64,
-		'coordinate' => '()'
+		'coordinate' => '(70,64)'
 	),
 	array(
 		64,
 		4,
-		'coordinate' => '()'
+		'coordinate' => '(64,4)'
 	),
 	array(
 		36,
 		6,
-		'coordinate' => '()'
+		'coordinate' => '(36,6)'
 	),
 	array(
 		30,
 		20,
-		'coordinate' => '()'
+		'coordinate' => '(30,20)'
 	),
 	array(
 		20,
 		30,
-		'coordinate' => '()'
+		'coordinate' => '(20,30)'
 	),
 	array(
 		15,
 		5,
-		'coordinate' => '()'
+		'coordinate' => '(15,5)'
 	),
 	array(
 		50,
 		70,
-		'coordinate' => '()'
+		'coordinate' => '(50,70)'
 	),
 	array(
 		57,
 		72,
-		'coordinate' => '()'
+		'coordinate' => '(57,72)'
 	),
 	array(
 		45,
 		42,
-		'coordinate' => '()'
+		'coordinate' => '(45,42)'
 	),
 	array(
 		38,
 		33,
-		'coordinate' => '()'
+		'coordinate' => '(38,33)'
 	),
 	array(
 		50,
 		4,
-		'coordinate' => '()'
+		'coordinate' => '(50,4)'
 	),
 	array(
 		66,
 		8,
-		'coordinate' => '()'
+		'coordinate' => '(66,8)'
 	),
 	array(
 		59,
 		5,
-		'coordinate' => '()'
+		'coordinate' => '(59,5)'
 	),
 	array(
 		35,
 		60,
-		'coordinate' => '()'
+		'coordinate' => '(35,60)'
 	),
 	array(
 		27,
 		24,
-		'coordinate' => '()'
+		'coordinate' => '(27,24)'
 	),
 	array(
 		40,
 		20,
-		'coordinate' => '()'
+		'coordinate' => '(40,20)'
 	),
 	array(
 		40,
 		37,
-		'coordinate' => '()'
+		'coordinate' => '(40,37)'
 	),
 	array(
 		40,
 		40,
-		'coordinate' => '()'
+		'coordinate' => '(40,40)'
 	)
 );
 ?>
