@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Travelling salesman problem sovle by PSO algorithm</title>
-		<link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="javascript_css/style.css" media="screen" rel="stylesheet" type="text/css" />
 	</head>
 	<body onload="drawAll();">
 		<header>
@@ -35,34 +35,34 @@
     					<input type="text" id="travelPointCountInput" name="travelPointCount" required="required" placeholder="1 ～ 99" pattern="[0-9]{1,2}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['travelPointCount'] ?>" />
     					&nbsp;&nbsp;&nbsp;
     				</span>
-    
+
     				<label for="particleCount">運算粒子數：</label>
     				<input type="text" id="particleCount" name="particleCount" required="required" placeholder="1 ～ 999" pattern="[0-9]{1,3}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['particleCount'] ?>" />
     				&nbsp;&nbsp;&nbsp;
-    
+
     				<label for="iterationCount">迭代量：</label>
     				<input type="text" id="iterationCount" name="iterationCount" required="required" placeholder="1 ～ 999" pattern="[0-9]{1,3}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['iterationCount'] ?>" />
     				&nbsp;&nbsp;&nbsp;
-    
+
     				<label for="maxNoProgressIterationCount">未改進終止迭代量：</label>
     				<input type="text" id="maxNoProgressIterationCount" name="maxNoProgressIterationCount" required="required" placeholder="1 ～ 999" pattern="[0-9]{1,9}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['maxNoProgressIterationCount'] ?>" />
     				&nbsp;&nbsp;&nbsp;
-    
+
     				<br />
     				<br />
-    
+
     				<label for="extinctionCount">速度重置（毀滅）數：</label>
     				<input type="text" id="extinctionCount" name="extinctionCount" required="required" placeholder="0 ~ 999" pattern="[0-9]{1,3}" title="請輸入0 ～ 999之間的數字" value="<?php echo $_POST['extinctionCount'] ?>" />
     				&nbsp;&nbsp;&nbsp;
-    
-    
+
+
     				<label for="maxNoProgressExtinctionCount">未改進速度重置數（觸發大滅絕）：</label>
     				<input type="text" id="maxNoProgressExtinctionCount" name="maxNoProgressExtinctionCount" required="required" placeholder="1 ~ 999" pattern="[0-9]{1,3}" title="請輸入1 ～ 999之間的數字" value="<?php echo $_POST['maxNoProgressExtinctionCount'] ?>" />
     				&nbsp;&nbsp;&nbsp;
-                </div>						
+                </div>
 
 				<?php echo $pointInputData ?>
-				
+
 				<br />
 				<input type="submit" name="submit" value="進行運算" />
 				&nbsp;&nbsp;&nbsp;
@@ -116,55 +116,8 @@
 			</table>
 		</div>
 		<?php endif; ?>
-	<script src="jquery-1.8.3.min.js"></script>
-	<script>		
-        function showCustomInput() {
-            $('#param').show();
-            $('#isGenerateNewPoints').show();
-            $('#travelPointCount').show();
-            $('#isShowBest').hide();
-        };
-
-        function showFixInput() {
-            triggerParam();
-            $('#isGenerateNewPoints').hide();
-            $('#travelPointCount').hide();
-            $('#isShowBest').show();
-        }
-        
-        function triggerParam() {
-            if ($('#isShowBestInput').attr('checked') == 'checked') {
-                $('#param').hide();
-            } else {
-                $('#param').show();
-            }
-        }
-
-        if ($('#dataSource').val() == 'custom') {
-            showCustomInput();
-        } else {
-            showFixInput();
-        }
-
-        // 選擇隨機產生模式，隱藏產生新的旅行點、旅行點數量欄位
-        $('#dataSource').change(function() {
-            if ($(this).val() == 'custom') {
-                showCustomInput();
-            } else {
-                showFixInput();
-            }
-        });
-                
-        // 修改旅行點數量自動勾選產生新的旅行點
-        $('#travelPointCountInput').change(function() {
-            $('#isGenerateNewPointsInput').attr('checked', 'checked');
-        });
-        
-        // 勾選顯示最佳值，移除參數顯示
-        $('#isShowBestInput').change(function(){
-            triggerParam();            
-        });
-        </script>
+	<script src="javascript_css/jquery-1.8.3.min.js"></script>
+	<script src="javascript_css/formControl.js"></script>
 
 	<?php if ($route && $points): ?>
     	<script>
@@ -173,6 +126,6 @@
 		</script>
 	<?php endif; ?>
 
-	<script src="canvas.js"></script>
+	<script src="javascript_css/canvas.js"></script>
 	</body>
 </html>

@@ -67,12 +67,12 @@ if ($_POST) {
         }
     } elseif ($_POST['dataSource'] == 'berlin52') {
         // 使用berlin52為資料
-        require 'berlin52.php';
+        require 'data/berlin52.php';
         $GLOBALS['travelPoints'] = $tspData;
         define('POINT_MAX', count($tspData));
     } elseif ($_POST['dataSource'] == 'eil76') {
         // 使用eil76為資料
-        require 'eil76.php';
+        require 'data/eil76.php';
         $GLOBALS['travelPoints'] = $tspData;
         define('POINT_MAX', count($tspData));
     }

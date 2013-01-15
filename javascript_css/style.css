@@ -8,6 +8,10 @@ body {
     font-size: 120%;
 }
 
+#param {
+    margin: 1em 0 0.3em 0;
+}
+
 #systemMessage {
     margin: 3px 0;
 }
